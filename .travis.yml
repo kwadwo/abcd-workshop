@@ -1,26 +1,22 @@
 dist: trusty
 sudo: false
-
 branches:
   only:
-    - master
-
+  - master
 env:
-  # This environment variable tells Terraform not to prompt for input. This is
-  # not required, but if we make a mistake, the Travis builder will hang waiting
-  # for user input, tieing up unnecessary resources.
+  matrix:
   - TF_INPUT=false
-
-# Install terraform
+  global:
+  - secure: E5XtDqeU9PMIprbGjM+udXkSp5w9gF54Js2DStqlkX3dQaooZ9J+OyWFDyaOZic/VYL1xl6s7MzDD0jPLDC4Fbbv58RVVLJ3odfcrFLXV/2A2Bm096qXd8CLj3x/KOxnoPDB1cQcL/fdbv2xWeT0W5/p6Md6uZY6ffeHcQYOL99VX4qz5drbXyCZRcHhgLu5pSr0pbaPRDyazl8FwDIQBaTQlm6fxWnXu5zpHKz2tITPd022oNRozlaObPF3icCPEbrIMSy3VbEKqt+jn09zuRZn1VZiqpgggEHEBfAfQZqnqZnhK3Fav01dnSd5BLgL5mveZjt4qNhzpedBwKfL657CiEFvGdFiYvTHbMiH88bVPa/t1TIbGAvTJadjhG56UiokHz8PiH8tF97pyszE2p92P+c4F/l/Z7OsEESlv9ptsclgHaNmY/ABda1Gkdu/y/iR5ngPU4SVpml6zrcsE83ws6aZpOol47xzo8qFJuYKbUIf4GYfvSfjgm3q7wLCAVc8b1ZYfDQ8g6HrFiNZKp5HdncBexJTwMUCtShjNU6mp8WySDcVMNu4NSMCEa7CUCnonWlxnbhBHTB0/H12QdzfokNuZa51bX3V4Us7Fz6IHHLVuJbV8jzmun3jRGNemBEw6bQ2/ELbRUUMm/r5ZA8c0x1gx6b73DrZ1oQDNfo=
+  - secure: dovA1HAVzZFOGOCyYW1KRmrqCnT/w5UCymW78zWOQAybXlZ9gbon6wG5shUbdP5RI9dDW8ENVhVCH6E/dimK/A9dIFpC7D3OtAefGOOXmTyupme6dKVdFBAkg9oDOUrwTUMD4MPEnPhUk+M8JKNdZyTvyGzftLGCtlj3OZpEQ2BhwsNkVdJX640Pqx679YJ2kLMc67OPR59fFqBFZwIJWVsewkdngqbWz/ydeh15mDL36HDvyLfYvOhly8mbav+8dprz3QqQg8L7piRKa2fTY22Tco/sQRLuxB7nsI/0JUyf184FdpY+c7CtyHQ1+rAeRuoPgpH+BEYt+Xns2IUfZzjviFoUw/tcsgQDc24xJSxE0Rv+xUeBOj199olm3+bPItWriLTSflY0k1Cws6Sdb+v57pVwirIiWbyIVbXoKYR72tABVLRusxMKzxAYeEK8E/bf403e/pwpRkf81sc1yzhOdnbyC+IlhURbn4hd/Kj9cnrBX9AqqxjUBTkPNJGigsPHXW8v6s5H5QzvDIw7FdiqarbkLaEwi3EP25vArF0DSbZE6Aztqwa3WC7qjW5LuIdrTwNaSO0zrFdaVUeQNMfXBLFg+r31jITJC1Qqe4TlE52BrEKsBUeKsGXfUAMeEvJUsFb3BT3Sw6O/MjlNGpBPFiVYNijaCIq4h3PI5QM=
+  - secure: Uz2mVJJ+GzSTNdczkPKTYQwiOLzwA6BBYX4c0kUP5/o4+NNTY0gcdn8zv7gs3mACH6lSuLla5NpdEkfTIK2MzqI3vfRxrN9Z215SxTgiOFXmMj2Qu76arHNOZEKC0o4O2R09RALYBNUeaarHt2+ZQ+Hq+tRsIArs7pwbY/EN86MknDhsNDF0L0BG9NlBdaB4qHGUlKQErvAu4qPXejl6mJFhoeFumEiJm8vy1BcxrezGNy5PCsfQ00BHAYroqiUjQW60ZvJoumYN7SXe9SG/n6Ohx41HyJc3wIDkrSufcqZF8/MnT1SGTRguc98+k27YomrLvyai+mWm9mV7D/cKP7KiCw/8WOboRRUJQJW4LFj3SZL7AL1ucCCPXvhpAKKOH0L/sWOCY+emtCjgd/PQ+GEgmV7fDJaMGP2r/ez0QO/u17RMai72CweRcZno+8xjvz3ugM2DeHNFGJvwpRgNIzPoksCjERMEgNbPd4G3rQV/0raSs3QYjUvgnZGvNAjZeV9CGDxeuMptBc5udmCKCOFn4yux2H/KBD+5nMxavbu71jS4ubMtVaVwTBEkaP7ktgL6XFbSDlUO/isUoo12Qe2acfbm999jfZRGp14TSu5Spozi2zIAora/xWm8xHWbGU8wJxyBeSwPDSC7J/io1jlw2kB5amhTR4HUZecolUg=
 before_install:
-  - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.8.8/terraform_0.8.8_linux_amd64.zip
-  - unzip /tmp/terraform.zip -d /tmp
-  - mkdir ~/bin
-  - mv /tmp/terraform ~/bin
-  - export PATH="~/bin:$PATH"
-
+- curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.8.8/terraform_0.8.8_linux_amd64.zip
+- unzip /tmp/terraform.zip -d /tmp
+- mkdir ~/bin
+- mv /tmp/terraform ~/bin
+- export PATH="~/bin:$PATH"
 script: terraform plan ./terraform
-
 deploy:
 - provider: script
   skip_cleanup: true
