@@ -10,6 +10,7 @@ variable "fastly_name" {
   type = "string"
 }
 
+#testing
 provider "fastly" {
   api_key = "${var.fastly_api_token}"
 }
